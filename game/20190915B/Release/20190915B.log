@@ -1,0 +1,16 @@
+﻿生成启动时间为 2019/9/15 20:34:57。
+     1>项目“E:\C代码\比特66班\20190915B\20190915B\20190915B.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\vs2012\VC\bin\CL.exe /c /I"D:\Program Files (x86)\Visual Leak Detector\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt test.c
+         test.c
+       Link:
+         D:\vs2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\C代码\比特66班\20190915B\Release\20190915B.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"D:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\C代码\比特66班\20190915B\Release\20190915B.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\C代码\比特66班\20190915B\Release\20190915B.lib" /MACHINE:X86 /SAFESEH Release\game.obj
+         Release\test.obj
+         正在生成代码
+         已完成代码的生成
+         20190915B.vcxproj -> E:\C代码\比特66班\20190915B\Release\20190915B.exe
+     1>已完成生成项目“E:\C代码\比特66班\20190915B\20190915B\20190915B.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.44
