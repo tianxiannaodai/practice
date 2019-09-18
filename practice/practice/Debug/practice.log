@@ -1,3 +1,2 @@
 ﻿  test.c
-e:\github\myrepository\practice\practice\practice\test.c(6): warning C4013: “system”未定义；假设外部返回 int
   practice.vcxproj -> E:\GitHub\MyRepository\practice\practice\Debug\practice.exe
