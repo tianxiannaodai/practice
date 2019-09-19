@@ -13,7 +13,7 @@ void InitBoard(char board[][ROW], int row, int col)
 	//		board[i][j] = ' ';
 	//	}
 	//}
-	memset(board,' ',row*col*sizeof(char));//将数组初始化为0
+	memset(board, ' ', row*col * sizeof(char));//将数组初始化为0
 
 }
 
@@ -46,7 +46,7 @@ void ShowBoard(char board[][ROW], int row, int col)
 				printf("   |");
 			}
 		}
-		printf("\n");	
+		printf("\n");
 	}
 	printf("\n");
 }
@@ -63,7 +63,7 @@ void PlayerMove(char board[][ROW], int row, int col)
 		scanf("%d%d", &x, &y);
 		if (x > 0 && x < 4 && y>0 && y < 4)//判断输入的位置是否合法
 		{
-			if (board[x - 1][y - 1] ==' ')//判断该位置是否有棋子
+			if (board[x - 1][y - 1] == ' ')//判断该位置是否有棋子
 			{
 				board[x - 1][y - 1] = 'X';
 				break;
@@ -90,11 +90,11 @@ void ComputerMove(char board[][ROW], int row, int col)
 	{
 		x = rand() % row;//产生随机坐标
 		y = rand() % col;
-		if (board[x ][y ] == ' ')//判断该位置是否有棋子
+		if (board[x][y] == ' ')//判断该位置是否有棋子
 		{
-			board[x ][y ] = 'Y';
+			board[x][y] = 'Y';
 			break;
-		}	
+		}
 	}
 }
 
@@ -102,22 +102,22 @@ void ComputerMove(char board[][ROW], int row, int col)
 int IsWin(char board[][ROW], int row, int col)
 {
 	int i = 0;
-	for (i=0;i<row;i++) 
+	for (i = 0; i < row; i++)
 	{
 		//横向判断
-		if (board[i][0] == board[i][1] && board[i][0]==board[i][2] && board[i][0] != ' ')
+		if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != ' ')
 		{
 			return board[i][0];
 		}
 
 		//纵向判断
-		else if (board[0][i] == board[1][i] && board[0][i]==board[2][i] && board[0][i] != ' ')
+		else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != ' ')
 		{
 			return board[0][i];
 		}
 
 		//左对角线判断
-		else if (board[0][0] == board[1][1] && board[0][0]==board[2][2] && board[0][0] != ' ')
+		else if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != ' ')
 		{
 			return board[1][1];
 		}
@@ -129,12 +129,12 @@ int IsWin(char board[][ROW], int row, int col)
 		}
 
 		//判断棋盘是否放满
-		else if (IsFull(board,row,col==0))
+		else if (IsFull(board, row, col == 1))
 		{
-			return 1;
+			return 0;
 		}
 	}
-	return ' ';
+	return 1;
 
 }
 
@@ -150,9 +150,9 @@ int IsFull(char board[][ROW], int row, int col)
 			//遇到空格即表示棋盘没满，返回0
 			if (board[i][j == ' '])
 			{
-				return 0;
+				return 1;
 			}
 		}
 	}
-	return 1;//表示棋盘已放满棋子
+	return 0;//表示棋盘已放满棋子
 }

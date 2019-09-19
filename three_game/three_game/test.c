@@ -21,19 +21,19 @@ void game()
 	while (1)
 	{
 		PlayerMove(board, ROW, COL);//玩家下棋
+		ShowBoard(board, ROW, COL); //打印棋盘
 		ret = IsWin(board, ROW, COL);//每次都要判断是否赢了比赛 
-		if (ret !=1)//平局，结束游戏
+		if (ret != 1)//平局，结束游戏
 		{
 			break;
 		}
-		ShowBoard(board, ROW, COL); //打印棋盘
 		ComputerMove(board, ROW, COL);//电脑下棋
+		ShowBoard(board, ROW, COL);//打印棋盘
 		ret = IsWin(board, ROW, COL);//每次都要判断是否赢了比赛
 		if (ret != 1)//平局，结束游戏
 		{
 			break;
 		}
-		ShowBoard(board, ROW, COL);//打印棋盘
 	}
 	if (ret == 'X')//玩家获胜，游戏结束
 	{
@@ -43,7 +43,7 @@ void game()
 	{
 		printf("电脑获胜\n");
 	}
-	if (ret == 1)//平局，游戏结束
+	if (ret == 0)//平局，游戏结束
 	{
 		printf("平局\n");
 	}
@@ -73,6 +73,3 @@ int main()
 	} while (input);
 	return 0;
 }
-
-
-
