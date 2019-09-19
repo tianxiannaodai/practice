@@ -1,0 +1,4 @@
+﻿  game.c
+e:\github\myrepository\three_game\three_game\game.c(23): warning C4013: “printf”未定义；假设外部返回 int
+e:\github\myrepository\three_game\three_game\game.c(67): warning C4013: “scanf”未定义；假设外部返回 int
+  three_game.vcxproj -> E:\GitHub\MyRepository\three_game\Debug\three_game.exe
