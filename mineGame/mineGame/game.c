@@ -14,11 +14,12 @@ void InitBoard(char board[][COLS], int rows, int cols, char set)
 	}
 }
 
+
 void ShowBoard(char board[][COLS], int rows, int cols)
 {
 	int i = 0;
 	int j = 0;
-	printf("======================\n");
+	printf("===================\n");
 	for (i = 0; i < rows - 1; i++)
 	{
 		printf("%d ", i);
@@ -33,21 +34,32 @@ void ShowBoard(char board[][COLS], int rows, int cols)
 		}
 		printf("\n");
 	}
-	printf("======================\n");
+	printf("===================\n");
 }
 
-void SetMine(char mine[][COLS], int row, int col)//9  9
+void SetMine(char mine[][COLS], int row, int col, int x, int y)//9  9
 {
 	int count = MINENUM;
-	int x = 0;
-	int y = 0;
+	int x1 = 0;
+	int y1 = 0;
 	while (count != 0)
 	{
-		x = rand() % row + 1;//[0-9)  [1,10)
-		y = rand() % col + 1;
-		if (mine[x][y] == '0')
+		x1 = rand() % row + 1;//[0-9)  [1,10)
+		y1 = rand() % col + 1;
+
+		while (1)
 		{
-			mine[x][y] = '1';
+			x1 = rand() % row + 1;//[0-9)  [1,10)
+			y1 = rand() % col + 1;
+			if (x != x1 || y != y1)
+			{
+				break;
+			}
+		}
+
+		if (mine[x1][y1] == '0')
+		{
+			mine[x1][y1] = '1';
 			count--;
 		}
 	}
@@ -82,10 +94,10 @@ void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
 	int x = 0;
 	int y = 0;
 	int count = 0;
-	//                     < 81 - 10 = 71
+	//                    
 	while (count < row * col - MINENUM)
 	{
-		printf("请输入你的坐标：");
+		printf("请输入你的坐标：\n");
 		scanf("%d%d", &x, &y);
 		if (x >= 1 && x <= 9 && y >= 1 && y <= 9)
 		{
@@ -96,13 +108,43 @@ void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
 			}
 			else
 			{
-				//1、找到旁边八个位置有几个雷   4
 				int mineNum = GetMine(mine, x, y);//  
-				//2、将当前位置置为   '4'
-				mineInfo[x][y] = mineNum + '0';
-				//3、count++;
-				count++;
+				if (mineNum == 0)
+				{
+					int i, j;
+					int m, n;
+					if (x > 1 && x < 9 && y>1 && y < 9)
+					{
+						for (i = x - 1; i <= x + 1; i++)
+						{
+							for (j = y - 1; j <= y + 1; j++)
+							{
+								int mineNum = GetMine(mine, i, j);
+								if (mineNum == 0)
+								{
+									for (m = i - 1; m <= i + 1; m++)
+									{
+										for (n = j - 1; n <= i + j; n++)
+										{
+											if (mineInfo[i][j] == '*')
+											{
+												mineInfo[i][j] = '0';
+											}
+										}
 
+									}
+								}
+							}
+						}
+					}
+					count += 9;
+				}
+				else
+				{
+					mineInfo[x][y] = mineNum + '0';
+					count++;
+
+				}
 				ShowBoard(mineInfo, ROWS, COLS);
 			}
 		}
@@ -115,5 +157,54 @@ void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
 	if (count == row * col - MINENUM)
 	{
 		printf("扫雷成功\n");
+	}
+}
+void FirstFindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
+{
+	int x = 0;
+	int y = 0;
+	while (1)
+	{
+		printf("请输入你的坐标：\n");
+		scanf("%d%d", &x, &y);
+		if (x >= 1 && x <= 9 && y >= 1 && y <= 9)
+		{
+			SetMine(mine, ROW, COL, x, y);
+			int mineNum = GetMine(mine, x, y);//  
+			if (mineNum == 0)
+			{
+				int i, j;
+				int m, n;
+				if (x > 1 && x < 9 && y>1 && y < 9)
+				{
+					for (i = x - 1; i <= x + 1; i++)
+					{
+						for (j = y - 1; j <= y + 1; j++)
+						{
+							int mineNum = GetMine(mine, i, j);
+							if (mineNum == 0)
+							{
+								for (m = i - 1; m <= i + 1; m++)
+								{
+									for (n = j - 1; n <= i + j; n++)
+									{
+										if (mineInfo[i][j] == '*')
+										{
+											mineInfo[i][j] = '0';
+										}
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				mineInfo[x][y] = mineNum + '0';
+			}
+			break;
+		}
 	}
 }

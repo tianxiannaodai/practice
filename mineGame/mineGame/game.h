@@ -11,11 +11,14 @@
 #define COLS  COL+2
 
 
-#define MINENUM 10  //初始10个雷
+#define MINENUM 10  //设置10个雷
 
-void InitBoard(char board[][COLS], int rows, int cols, char set);
-void ShowBoard(char board[][COLS], int rows, int cols);
+void InitBoard(char board[][COLS], int rows, int cols, char set);//初始化棋盘
 
-void SetMine(char mine[][COLS], int row, int col);
+void ShowBoard(char board[][COLS], int rows, int cols);//打印棋盘
 
-void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col);
+void SetMine(char mine[][COLS], int row, int col,  int x, int y);//设置雷
+
+void FirstFindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col);//第一次找雷
+void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col);//找雷
+

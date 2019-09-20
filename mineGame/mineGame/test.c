@@ -2,10 +2,10 @@
 #include "game.h"
 void menu()
 {
-	printf("*****************\n");
-	printf("*****0.exit*******\n");
-	printf("*****1.play******\n");
-	printf("*****************\n");
+	printf("*******************\n");
+	printf("*******0.exit******\n");
+	printf("*******1.play******\n");
+	printf("*******************\n");
 }
 void game()
 {
@@ -16,13 +16,12 @@ void game()
 	InitBoard(mine, ROWS, COLS, '0');
 
 	ShowBoard(mineInfo, ROWS, COLS);
-
-	SetMine(mine, ROW, COL);
-
-	//ShowBoard(mine,ROWS,COLS);
-
+	
+	FirstFindMine(mineInfo, mine, ROW, COL);
+	ShowBoard(mineInfo, ROWS, COLS);
+	
 	FindMine(mineInfo, mine, ROW, COL);
-
+	//ShowBoard(mineInfo, ROWS, COLS);
 }
 int main()
 {
@@ -31,7 +30,7 @@ int main()
 	do
 	{
 		menu();
-		printf("请输入你的操作：");
+		printf("请输入你的操作：\n");
 		scanf("%d", &input);
 		switch (input)
 		{
