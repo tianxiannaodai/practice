@@ -107,44 +107,8 @@ void FindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
 				break;
 			}
 			else
-			{
-				int mineNum = GetMine(mine, x, y);//  
-				if (mineNum == 0)
-				{
-					int i, j;
-					int m, n;
-					if (x > 1 && x < 9 && y>1 && y < 9)
-					{
-						for (i = x - 1; i <= x + 1; i++)
-						{
-							for (j = y - 1; j <= y + 1; j++)
-							{
-								int mineNum = GetMine(mine, i, j);
-								if (mineNum == 0)
-								{
-									for (m = i - 1; m <= i + 1; m++)
-									{
-										for (n = j - 1; n <= i + j; n++)
-										{
-											if (mineInfo[i][j] == '*')
-											{
-												mineInfo[i][j] = '0';
-											}
-										}
-
-									}
-								}
-							}
-						}
-					}
-					count += 9;
-				}
-				else
-				{
-					mineInfo[x][y] = mineNum + '0';
-					count++;
-
-				}
+			{		
+				openMine(mineInfo, mine, x, y);
 				ShowBoard(mineInfo, ROWS, COLS);
 			}
 		}
@@ -169,42 +133,41 @@ void FirstFindMine(char mineInfo[][COLS], char mine[][COLS], int row, int col)
 		scanf("%d%d", &x, &y);
 		if (x >= 1 && x <= 9 && y >= 1 && y <= 9)
 		{
-			SetMine(mine, ROW, COL, x, y);
-			int mineNum = GetMine(mine, x, y);//  
-			if (mineNum == 0)
-			{
-				int i, j;
-				int m, n;
-				if (x > 1 && x < 9 && y>1 && y < 9)
-				{
-					for (i = x - 1; i <= x + 1; i++)
-					{
-						for (j = y - 1; j <= y + 1; j++)
-						{
-							int mineNum = GetMine(mine, i, j);
-							if (mineNum == 0)
-							{
-								for (m = i - 1; m <= i + 1; m++)
-								{
-									for (n = j - 1; n <= i + j; n++)
-									{
-										if (mineInfo[i][j] == '*')
-										{
-											mineInfo[i][j] = '0';
-										}
-									}
-
-								}
-							}
-						}
-					}
-				}
-			}
-			else
-			{
-				mineInfo[x][y] = mineNum + '0';
-			}
+			SetMine(mine,row,col,x,y);
+			//mineInfo[x][y] = '0';
+			openMine(mineInfo, mine, x, y);
+			ShowBoard(mineInfo, ROWS, COLS);
 			break;
 		}
+		printf("坐标不合法！\n");
+	}
+}
+void  openMine(char mineInfo[][COLS], char mine[][COLS], int x, int y)
+{
+	int mineNum = GetMine(mine, x, y);
+	
+	if (mineNum==0)
+	{
+		mineInfo[x][y] = '0';
+		if ((x - 1) >= 1 && (x - 1) <= ROW && (y - 1) >= 1 && (y - 1) <= COL && mineInfo[x - 1][y - 1] == '*')
+			 openMine(mine, mineInfo, x - 1, y - 1);
+		if ((x) >= 1 && (x) <= ROW && (y - 1) >= 1 && (y - 1) <= COL && mineInfo[x][y - 1] == '*')
+			 openMine(mine, mineInfo, x, y - 1);
+		if ((x + 1) >= 1 && (x + 1) <= ROW && (y - 1) >= 1 && (y - 1) <= COL && mineInfo[x + 1][y - 1] == '*')
+			 openMine(mine, mineInfo, x + 1, y - 1);
+		if ((x + 1) >= 1 && (x + 1) <= ROW && (y) >= 1 && (y) <= COL && mineInfo[x + 1][y] == '*')
+			openMine(mine, mineInfo, x + 1, y);
+		if ((x + 1) >= 1 && (x + 1) <= ROW && (y + 1) >= 1 && (y + 1) <= COL && mineInfo[x + 1][y + 1] == '*')
+			openMine(mine, mineInfo, x + 1, y + 1);
+		if ((x) >= 1 && (x) <= ROW && (y + 1) >= 1 && (y + 1) <= COL && mineInfo[x][y + 1] == '*')
+			 openMine(mine, mineInfo, x, y + 1);
+		if ((x - 1) >= 1 && (x - 1) <= ROW && (y + 1) >= 1 && (y + 1) <= COL && mineInfo[x - 1][y + 1] == '*')
+			openMine(mine, mineInfo, x - 1, y + 1);
+		if ((x - 1) >= 1 && (x - 1) <= ROW && (y) >= 1 && (y) <= COL && mineInfo[x - 1][y] == '*')
+			 openMine(mine, mineInfo, x - 1, y);
+	}
+	else
+	{
+		mineInfo[x][y] = '0' + mineNum;
 	}
 }

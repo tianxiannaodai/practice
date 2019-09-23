@@ -18,7 +18,7 @@ void game()
 	ShowBoard(mineInfo, ROWS, COLS);
 	
 	FirstFindMine(mineInfo, mine, ROW, COL);
-	ShowBoard(mineInfo, ROWS, COLS);
+    //ShowBoard(mineInfo, ROWS, COLS);
 	
 	FindMine(mineInfo, mine, ROW, COL);
 	//ShowBoard(mineInfo, ROWS, COLS);
