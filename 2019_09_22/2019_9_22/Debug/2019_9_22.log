@@ -1,0 +1,3 @@
+﻿  test.c
+e:\github\myrepository\practice\2019_9_22\2019_9_22\test.c(16): warning C4047: “初始化”:“char”与“void *”的间接级别不同
+  2019_9_22.vcxproj -> E:\GitHub\MyRepository\practice\2019_9_22\Debug\2019_9_22.exe
