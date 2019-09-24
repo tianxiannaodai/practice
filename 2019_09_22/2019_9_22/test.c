@@ -1,4 +1,26 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+//比较两个数的大小
+//不能定义第三个变量
+//不能用if,for,<,>,
+//可以用位运算，三目运算符
+int Max(int a, int b)
+{
+	return ((a - b) >> 31) ? (-1) : (a - b ? 1 : 0);
+}
+int main()
+{
+	int a = 0;
+	int b = 0;
+	scanf("%d%d", &a, &b);
+	Max(a,b);
+	printf("%d", Max(a, b));
+	return 0;
+}
 
+
+
+#if 0
 //有一个字符数组的内容为:"student a am i",
 //	请你将数组的内容改为"i am a student".
 //	要求：
@@ -75,7 +97,7 @@ int main()
 
 
 
-#if 0
+
 //编程实现：
 //一组数据中只有一个数字出现了一次。
 //其他所有数字都是成对出现的。
@@ -103,16 +125,30 @@ int main()
 //不使用（a + b） / 2这种方式，求两个数的平均值。
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
+//位运算求平均值
+int Average(int a, int b)
+{
+	return ((a&b) + ((a^b) >> 1));
+}
+//位运算求和
+int Sum(int a, int b)
+{
+	return (((a&b) << 1) + (a^b));
+}
 int main()
 {
 	int a = 0;
 	int b = 0;
 	int avg = 0;
 	printf("请输入a和b的值：");
-	scanf("%d%d",&a,&b);
+	scanf("%d%d", &a, &b);
 	avg = (a + b) >> 1;
-	printf("(%d+%d)/2=%d",a,b,avg);
+
+	printf("(%d+%d)/2=%d\n", a, b, avg);
+	printf("%d\n", Average(a, b));
+	printf("%d\n", Sum(a, b));
 }
+
 
 
 
@@ -164,7 +200,16 @@ unsigned int reverse_bit(unsigned int value)
 	return result;
 }
 
-
+//方法三
+unsigned int reverse_bit(unsigned int value)
+{
+	int i = 0;
+	for ()
+	{
+		sum+=(((value>>i)&1)*pow((double)2,31-i))
+	}
+	return result;
+}
 int main() 
 {
 	int num = 0;
@@ -172,7 +217,7 @@ int main()
 	printf("请输入一个数:");
 	scanf("%d", &num);
 	result=reverse_bit(num);
-	printf("翻转后：%d", result);
+	printf("翻转后：%u", result);
 	return 0;
 }
 
@@ -197,12 +242,12 @@ int main() {
 	{
 		for (int j = 1; j < i; j++) 
 		{
-			if (i == 1)
+			/*if (i == 1)
 			{
 				printf("%4d\n", a[1][1] = 1);
 			}
 			else 
-			{
+			{*/
 				if ((j == 1) || (i == j)) 
 				{
 					printf("%4d", a[i][j] = 1);
@@ -211,7 +256,7 @@ int main() {
 				{
 					printf("%4d", a[i][j] = a[i - 1][j - 1] + a[i - 1][j]);
 				}
-			}
+			//}
 		}
 		printf("\n");
 
