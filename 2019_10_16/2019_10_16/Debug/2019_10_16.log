@@ -1,0 +1,5 @@
+﻿  test.c
+e:\github\myrepository\practice\2019_10_16\2019_10_16\test.c(143): warning C4047: “>”:“int”与“const char *”的间接级别不同
+e:\github\myrepository\practice\2019_10_16\2019_10_16\test.c(147): warning C4047: “<”:“int”与“const char *”的间接级别不同
+e:\github\myrepository\practice\2019_10_16\2019_10_16\test.c(170): warning C4715: “my_strcmp”: 不是所有的控件路径都返回值
+  2019_10_16.vcxproj -> E:\GitHub\MyRepository\practice\2019_10_16\Debug\2019_10_16.exe
