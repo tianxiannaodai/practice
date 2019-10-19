@@ -178,25 +178,109 @@ int main()
 //#endif
 
 #if 0
+//strstr函数的模拟实现
+char * my_strstr(const char * str1, const char * str2)
+{
+	assert(str1&&str2);
+	char * src = (char*)str1;
+	char * sub = (char*)str2;
+	char * p = NULL;
+	if (*str2 == '\0')
+	{
+		return NULL;
+	}
+	while (*src)
+	{
+		p = src;
+		sub = str2;
+		while (*p&&*sub && (*src == *sub))
+		{
+			p++;
+			sub++;
+		}
+		if (*sub == '\0')
+		{
+			return p;
+		}
+		else
+		{
+			src = ++p;
+			sub = str2;
+		}
+	}
+}
 int main()
 {
-
+	char str1[] = "hello world";
+	char str2[] = "world";
+	printf("%c\n", my_strstr(str1, str2));
 	return 0;
 }
 #endif
 
 #if 0
+//memcpy函数的模拟实现
+void * my_memcpy(void * dst, const void * src, size_t count)
+{
+	assert(dst&&src);
+	while (count--)
+	{
+		*(char *)dst = *(char *)src;
+		dst = (char *)dst + 1;
+		src = (char *)src + 1;
+	}
+	return dst;
+}
+struct
+{
+	char name[20];
+	int age;
+}person, person_copy;
 int main()
 {
+	char myname[] = "abcdefgh";
+	//using memcpy to copy string
+	my_memcpy(person.name, myname, strlen(myname) + 1);
+	person.age = 46;
 
+	//using memcpy to copy structure
+	my_memcpy(&person_copy, &person, sizeof(person));
+	printf("person_copy:%s,%d", person_copy.name, person_copy.age);
 	return 0;
 }
 #endif
 
 #if 0
+//memmove函数的模拟实现
+void * my_memmove(void * dst, const void * src, size_t count)
+{
+	assert(dst&&src);
+	if (dst < src || (char *)dst >= ((char *)src + count))
+	{
+		while (count--)
+		{
+			*(char *)dst = *(char *)src;
+			dst = (char *)dst + 1;
+			src = (char *)src + 1;
+		}
+	}
+	else
+	{
+		dst = (char *)dst + count - 1;
+		src = (char *)src + count - 1;
+		while (count--)
+		{
+			*(char *)dst = *(char *)src;
+			dst = (char *)dst - 1;
+			src = (char *)src - 1;
+		}
+	}
+}
 int main()
 {
-
+	char str[] = "memmove an be very usefull";
+	my_memmove(str + 20, str + 15, 11);
+	printf("%s\n", str);
 	return 0;
 }
 #endif
