@@ -1,0 +1,3 @@
+﻿  Test.c
+e:\github\myrepository\practice\test\test\test.c(8): warning C4047: “=”:“int”与“void *”的间接级别不同
+  Test.vcxproj -> E:\GitHub\MyRepository\practice\Test\Debug\Test.exe
